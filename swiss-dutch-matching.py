@@ -51,6 +51,11 @@ elif (C == 1):
 seed = [(i+1) for i in range(N)]
 
 if (C == 1):
+    # print the seeds for guide
+    print("Seed: ")
+    for s in seed:
+        print(s,end=" ")
+    print()
     score = [int(i) for i in input("Input the score of each player ").split(" ")]
     whites = [int(i) for i in input("Input how many times players took white ").split(" ")]
     blacks = [int(i) for i in input("Input how many times players took black ").split(" ")]
