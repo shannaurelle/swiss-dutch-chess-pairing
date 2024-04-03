@@ -128,6 +128,7 @@ for i,e in enumerate(paths):
 matched = set()
 pairings = []
 # this one is for announcing it to the referees
+print("=== ROUND,",R+1,"MATCHES ===",end="")
 for player_A,player_B in enumerate(paths):
     if((player_A not in matched or player_B not in matched) and player_B != -1):
         if(R % 2 == 0):
