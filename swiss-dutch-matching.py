@@ -115,7 +115,7 @@ edges = []
 if(C == 1):
     # make an upper triangular adjacency matrix
     for p_A in range(N):
-        for p_B in range(p_A,N):
+        for p_B in range(N):
             if(p_A != p_B and (p_A,p_B) not in prev_pairings and abs(cd[p_A] + cd[p_B]) < 2 * BETA):
                 # weight computation
                 wt = 10000.0 * (-1.0*abs(score[p_A] - score[p_B]))
@@ -125,18 +125,36 @@ if(C == 1):
                 wt += -1.0 * abs(sg_size / 2.0 - abs(rank[p_A] - rank[p_B]))**1.01
                 edges.append((p_A,p_B,round(wt,2)))
 # debugging purposes
-# for e in edges:
-#    print(e)
-paths = maxWeightMatching(edges,True)
+for e in edges:
+    print(e)
+paths = [-1 for i in range(N)]
+matched = set()
+pairings = []
+try:
+    paths = maxWeightMatching(edges,True)
+except AssertionError:
+    # use a backtracking solution
+    # match rank i to rank i+1, then
+    # match i to i+2 if i and i+1 fought already...
+    for rank_A,player_A in enumerate(rank):
+        for rank_B in range(rank_A+1,len(rank)):
+            player_B = rank[rank_B]
+            if player_A != player_B and (not (player_A in matched and player_B in matched)):
+                if cd[player_A] < 2:
+                    paths[player_A] = player_B
+                    matched.add(player_A)
+                    matched.add(player_B)
+                    break
+    
 # debugging purposes
-# for i,e in enumerate(paths):
-#    print(i," ",e)
+for i,e in enumerate(paths):
+    print(i," ",e)
 matched = set()
 pairings = []
 # this one is for announcing it to the referees
 print("=== ROUND",R+1,"MATCHES ===")
 for player_A,player_B in enumerate(paths):
-    if((player_A not in matched or player_B not in matched) and player_B != -1):
+    if((not (player_A in matched and player_B in matched)) and player_B != -1):
         if(cd[player_A] < cd[player_B]):
             pairings.append((player_A,player_B))
             print("Player ",player_A,"(White) vs Player ",player_B,"(Black)")
