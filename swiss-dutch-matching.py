@@ -11,7 +11,7 @@ from mwmatching import maxWeightMatching
 ## constants to remember
 N = int(input("Number of Players in the Game: "))
 # C: continue counter (0 for with seeding, 1 for continuing rounds)
-C = int(input("Game day: "))
+C = int(input("Starting round (0 if yes, 1 if no): "))
 # R: number of rounds
 R = int(input("Round: "))-1
 # beta: value for the difference between white and black picks (2 for FIDE)
@@ -39,7 +39,7 @@ prev_pairings = []
 # debug printing
 print("==== PROGRAM PARAMETERS ====")
 print("Number of players: ",N)
-print("Round: ",R)
+print("Round: ",R+1)
 print("Starting Round (0 if yes, 1 if not): ",C)
 print("Maximum color difference: ",BETA)
 if (C == 0):
@@ -94,14 +94,15 @@ bye = 0
 sorted_seed = sorted((j,i) for i,j in enumerate(seed))
 if(C == 0):
     mid = N // 2
-    # pick the player with lowest seed as bye
-    if(N % 2 == 1):
-        bye = any(i for i in seed if i == max(seed))
     top_half = sorted_seed[:mid]
     bottom_half = sorted_seed[mid:]
     for i,j in zip(top_half,bottom_half):
         player = 1
         print("Player ",i[player]+1,"(White) vs Player ",j[player]+1,"(Black)")
+    # pick the player with lowest seed as bye
+    if(N % 2 == 1):
+        bye = any(i for i in seed if i == max(seed))
+        print("Bye: Player ",bye)
 
 # match making
 sorted_rank = sorted((rank,player) for player,rank in enumerate(rank))
