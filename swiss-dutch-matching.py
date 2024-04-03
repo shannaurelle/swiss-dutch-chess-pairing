@@ -52,7 +52,7 @@ seed = [(i+1) for i in range(N)]
 
 if (C == 1):
     # print the seeds for guide
-    print("Seed: ")
+    print("Seed:",end=" ")
     for s in seed:
         print(s,end=" ")
     print()
@@ -134,15 +134,15 @@ paths = maxWeightMatching(edges,True)
 matched = set()
 pairings = []
 # this one is for announcing it to the referees
-print("=== ROUND,",R+1,"MATCHES ===")
+print("=== ROUND",R+1,"MATCHES ===")
 for player_A,player_B in enumerate(paths):
     if((player_A not in matched or player_B not in matched) and player_B != -1):
-        if(R % 2 == 1):
-            pairings.append((player_B,player_A))
-            print("Player ",player_B,"(White) vs Player ",player_A,"(Black)")
-        else:
+        if(cd[player_A] < cd[player_B]):
             pairings.append((player_A,player_B))
             print("Player ",player_A,"(White) vs Player ",player_B,"(Black)")
+        else:
+            pairings.append((player_B,player_A))
+            print("Player ",player_B,"(White) vs Player ",player_A,"(Black)")
         matched.add(player_A)
         matched.add(player_B)
 # a separate printing of numbers for storage in paper
