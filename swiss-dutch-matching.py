@@ -48,7 +48,7 @@ if (C == 0):
 elif (C == 1):
     print("Continuing round")
 
-seed = [int(i) for i in input("Input the seed of each player ").split(" ")]
+seed = [(i+1) for i in range(N)]
 
 if (C == 1):
     score = [int(i) for i in input("Input the score of each player ").split(" ")]
