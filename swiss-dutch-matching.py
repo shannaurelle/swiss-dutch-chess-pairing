@@ -127,6 +127,7 @@ for i,e in enumerate(paths):
     print(i," ",e)
 matched = set()
 pairings = []
+# this one is for announcing it to the referees
 for player_A,player_B in enumerate(paths):
     if((player_A not in matched or player_B not in matched) and player_B != -1):
         if(R % 2 == 0):
@@ -137,6 +138,7 @@ for player_A,player_B in enumerate(paths):
             print("Player ",player_A,"(White) vs Player ",player_B,"(Black)")
         matched.add(player_A)
         matched.add(player_B)
+# a separate printing of numbers for storage in paper
 for i,j in pairings:
     print(i," ",j)
         
