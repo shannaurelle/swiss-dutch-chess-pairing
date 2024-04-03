@@ -81,8 +81,6 @@ if(C == 1):
     for r in rank:
         print(r,end=" ")
     print()
-curr_round = 1 if (R == 0) else (R+1)
-print("=== ROUND ",curr_round," ===")
 # graph creation
 # if initial round, use dutch pairing system
 # using the seed divide into two halfs, pair the
@@ -121,11 +119,13 @@ if(C == 1):
                 sg_size = 0.0 if abs(score[p_A] - score[p_B]) > 0 else sum(1.0 for i in score if i == score[p_A])
                 wt += -1.0 * abs(sg_size / 2.0 - abs(rank[p_A] - rank[p_B]))**1.01
                 edges.append((p_A,p_B,round(wt,2)))
-for e in edges:
-    print(e)
+# debugging purposes
+# for e in edges:
+#    print(e)
 paths = maxWeightMatching(edges,True)
-for i,e in enumerate(paths):
-    print(i," ",e)
+# debugging purposes
+# for i,e in enumerate(paths):
+#    print(i," ",e)
 matched = set()
 pairings = []
 # this one is for announcing it to the referees
