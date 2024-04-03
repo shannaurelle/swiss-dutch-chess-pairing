@@ -29,6 +29,11 @@ rank = []
 # cd: color difference of player i
 cd = []
 # prior matches
+# matches are in the form (white player, black player)
+# while players are numbered 0 to N-1
+# examples: 
+# player 1 (white) vs player 2 (black) is 0 1
+# player 3 (white) vs player 1 (black) is 2 0
 prev_pairings = []
 
 # debug printing
