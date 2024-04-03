@@ -132,7 +132,7 @@ pairings = []
 print("=== ROUND,",R+1,"MATCHES ===")
 for player_A,player_B in enumerate(paths):
     if((player_A not in matched or player_B not in matched) and player_B != -1):
-        if(R % 2 == 0):
+        if(R % 2 == 1):
             pairings.append((player_B,player_A))
             print("Player ",player_B,"(White) vs Player ",player_A,"(Black)")
         else:
