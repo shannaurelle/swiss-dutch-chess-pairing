@@ -157,10 +157,10 @@ for player_A,player_B in enumerate(paths):
     if((not (player_A in matched and player_B in matched)) and player_B != -1):
         if(cd[player_A] < cd[player_B]):
             pairings.append((player_A,player_B))
-            print("Player ",player_A,"(White) vs Player ",player_B,"(Black)")
+            print("Player ",player_A+1,"(White) vs Player ",player_B+1,"(Black)")
         else:
             pairings.append((player_B,player_A))
-            print("Player ",player_B,"(White) vs Player ",player_A,"(Black)")
+            print("Player ",player_B+1,"(White) vs Player ",player_A+1,"(Black)")
         matched.add(player_A)
         matched.add(player_B)
 # a separate printing of numbers for storage in paper
